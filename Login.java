@@ -2,6 +2,7 @@ import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 import java.awt.*;
@@ -10,10 +11,21 @@ import java.awt.event.*;
 
 public class Login extends JFrame implements ActionListener{
 
+    //Initialize Variables
     JButton login, signup, clear;
+    JTextField cardTextField;
+    JPasswordField pinTextField;
 
     Login() 
     {
+        // App size and color background
+        getContentPane().setBackground(Color.WHITE);
+
+        setSize(1000, 680);
+        setVisible(true);
+        setLocation(350, 200);
+
+        // All titles and texts
         setTitle("ATM by Central Bank");
 
         setLayout(null);
@@ -35,60 +47,59 @@ public class Login extends JFrame implements ActionListener{
         cardno.setBounds(120, 140, 250, 40);
         add(cardno);
 
-        JTextField cardTextField = new JTextField();
-        cardTextField.setBounds(300, 150, 250, 30);
-        add(cardTextField);
-
         JLabel pin = new JLabel("Pin:");
         pin.setFont(new Font("Raleway", Font.BOLD, 25));
         pin.setBounds(120, 210, 150, 40);
         add(pin);
 
-        JTextField pinTextField = new JTextField();
-        pinTextField.setBounds(300, 210, 250, 30);
-        add(pinTextField);
-
-        JButton login = new JButton("Login");
+        login = new JButton("Login");
         login.setBounds(300, 300, 120, 30);
         login.setBackground(Color.BLACK);
         login.setForeground(Color.WHITE);
         login.addActionListener(this);
         add(login);
 
-        JButton clear = new JButton("Clear");
+        clear = new JButton("Clear");
         clear.setBounds(430, 300, 120, 30);
         clear.setBackground(Color.BLACK);
         clear.setForeground(Color.WHITE);
         clear.addActionListener(this);
         add(clear);
 
-        JButton signup = new JButton("Sign up");
+        signup = new JButton("Sign up");
         signup.setBounds(300, 350, 250, 30);
         signup.setBackground(Color.BLACK);
         signup.setForeground(Color.WHITE);
         signup.addActionListener(this);
         add(signup);
 
-        getContentPane().setBackground(Color.WHITE);
+        // All Inputs
+        cardTextField = new JTextField();
+        cardTextField.setBounds(300, 150, 250, 30);
+        cardTextField.setFont(new Font("Arial", Font.BOLD, 14));
+        add(cardTextField);
 
-        setSize(1000, 680);
-        setVisible(true);
-        setLocation(350, 200);
+        pinTextField = new JPasswordField();
+        pinTextField.setBounds(300, 210, 250, 30);
+        pinTextField.setFont(new Font("Arial", Font.BOLD, 14));
+        add(pinTextField);
     }
 
     public void actionPerformed(ActionEvent ae)
     {
         if (ae.getSource() == clear)
         {
+            cardTextField.setText("");
+            pinTextField.setText("");
         }
-            else if (ae.getSource() == login)
-            {
+        else if (ae.getSource() == login)
+        {
 
-            }
-            else if (ae.getSource() == signup)
-            {
+        }
+        else if (ae.getSource() == signup)
+        {
 
-            }
+        }
         
     }
 
