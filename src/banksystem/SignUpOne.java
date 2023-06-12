@@ -6,16 +6,16 @@ import java.util.*;
 import com.toedter.calendar.JDateChooser;
 import java.awt.event.*;
 
-public class SignUpOne extends JFrame
+public class SignUpOne extends JFrame implements ActionListener
 {
     long random;
-    JLabel formno, personalDetails, name, dob, email, pname1, sex, address, city, state, marital, pincode;
-    JTextField nameTextField, pname1TextField, emailTextField, addressTextField, cityTextField, pincodeTextField;
+    JLabel formno, personalDetails, fname, lname, dob, email, sex, marital, address, city, state, pnumber, race;
+    JTextField fnameTextField, lnameTextField, emailTextField, addressTextField, cityTextField, pnumberTextField, raceTextField;
     JRadioButton male, female, single, married, divorced, widow;
     ButtonGroup sexgroup, marriedgroup;
     JDateChooser dateChooser;
     JButton next;
-    JComboBox dropdownMenu;
+    JComboBox dropdownMenu, raceBox;
 
     SignUpOne()
     {
@@ -37,26 +37,26 @@ public class SignUpOne extends JFrame
         add(personalDetails);
 
         // Name -> text and input
-        name = new JLabel("Name:");
-        name.setFont(new Font("Raleway", Font.BOLD, 20));
-        name.setBounds(100, 140, 100, 30);
-        add(name);
+        fname = new JLabel("First Name:");
+        fname.setFont(new Font("Raleway", Font.BOLD, 20));
+        fname.setBounds(100, 140, 200, 30);
+        add(fname);
 
-        nameTextField = new JTextField();
-        nameTextField.setFont(new Font("Raleway", Font.BOLD, 14));
-        nameTextField.setBounds(300, 140, 400, 30);
-        add(nameTextField);
+        fnameTextField = new JTextField();
+        fnameTextField.setFont(new Font("Raleway", Font.BOLD, 14));
+        fnameTextField.setBounds(300, 140, 400, 30);
+        add(fnameTextField);
 
         // Parental Guardian -> text and input
-        pname1 = new JLabel("Parental Guardian:");
-        pname1.setFont(new Font("Raleway", Font.BOLD, 20));
-        pname1.setBounds(100, 190, 300, 30);
-        add(pname1);
+        lname = new JLabel("Last Name:");
+        lname.setFont(new Font("Raleway", Font.BOLD, 20));
+        lname.setBounds(100, 190, 300, 30);
+        add(lname);
 
-        pname1TextField = new JTextField();
-        pname1TextField.setFont(new Font("Raleway", Font.BOLD, 14));
-        pname1TextField.setBounds(300, 190, 400, 30);
-        add(pname1TextField);
+        lnameTextField = new JTextField();
+        lnameTextField.setFont(new Font("Raleway", Font.BOLD, 14));
+        lnameTextField.setBounds(300, 190, 400, 30);
+        add(lnameTextField);
 
         // Date of Birth -> text and input
         dob = new JLabel("Date of Birth:");
@@ -160,7 +160,7 @@ public class SignUpOne extends JFrame
         state.setBounds(500, 490, 200, 30);
         add(state);
         
-        String[] states = {"", "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana",
+        String[] states = {"Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana",
         "Iowa", "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire",
         "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", "Tennessee", "Texas",
         "Utah", "Vermont", "Virginia", "Washington", "West Virginia", "Wisconsin", "Wyoming"};
@@ -169,23 +169,36 @@ public class SignUpOne extends JFrame
         add(dropdownMenu);
         dropdownMenu.setSelectedItem(null);
 
-        // Pincode -> text and input
-        pincode = new JLabel("Pin Code:");
-        pincode.setFont(new Font("Raleway", Font.BOLD, 20));
-        pincode.setBounds(100, 540, 200, 30);
-        add(pincode);
+        // Phone Number -> text and input
+        pnumber = new JLabel("Phone Number:");
+        pnumber.setFont(new Font("Raleway", Font.BOLD, 20));
+        pnumber.setBounds(100, 540, 200, 30);
+        add(pnumber);
 
-        pincodeTextField = new JTextField();
-        pincodeTextField.setFont(new Font("Raleway", Font.BOLD, 14));
-        pincodeTextField.setBounds(300, 540, 400, 30);
-        add(pincodeTextField);
+        pnumberTextField = new JTextField();
+        pnumberTextField.setFont(new Font("Raleway", Font.BOLD, 14));
+        pnumberTextField.setBounds(300, 540, 400, 30);
+        add(pnumberTextField);
+
+        // Races -> text and input
+        race = new JLabel("Race:");
+        race.setFont(new Font("Raleway", Font.BOLD, 20));
+        race.setBounds(100, 590, 200, 30);
+        add(race);
+
+        String[] races = {"American Indian or Alaskan Native", "Asian", "Black or African American", "Hispanic or Latino", "Native Hawaiian or Other Pacific Islander", "Two or More Races (Not Hispanic or Latino)", "White", "Not Specified"};
+        raceBox = new JComboBox<String>(races);
+        raceBox.setBounds(300, 590, 400, 30);
+        add(raceBox);
+        raceBox.setSelectedItem(null);
         
         // 'Next' at the bottom -> button
         next = new JButton("Next");
         next.setForeground(Color.BLACK);
         next.setBackground(Color.WHITE);
         next.setFont(new Font("Raleway", Font.BOLD, 14));
-        next.setBounds(620, 590, 80, 50);
+        next.setBounds(620, 640, 80, 50);
+        next.addActionListener(this);
         add(next);
         
         // App color and layout
@@ -193,6 +206,68 @@ public class SignUpOne extends JFrame
         setSize(850,800);
         setLocation(350, 10);
         setVisible(true);
+    }
+
+    public void actionPerformed(ActionEvent ae)
+    {
+        String formno = "" + random;
+        String name = fnameTextField.getText();
+        String lname = lnameTextField.getText();
+        String dob = ((JTextField) dateChooser.getDateEditor().getUiComponent()).getText();
+        String sex = null;
+        if (male.isSelected())
+        {
+            sex = "Male";
+        }
+        else if (female.isSelected())
+        {
+            sex = "Female";
+        }
+
+        String email = emailTextField.getText();
+        String marital = null;
+        if (single.isSelected())
+        {
+            marital = "Single";
+        }
+        else if (married.isSelected())
+        {
+            marital = "Married";
+        }
+        else if (divorced.isSelected())
+        {
+            marital = "Divorced";
+        }
+        else if (widow.isSelected())
+        {
+            marital = "Widow";
+        }
+
+        String address = addressTextField.getText();
+        String city = cityTextField.getText();
+        String state = dropdownMenu.getSelectedItem().toString();
+        String race = raceBox.getSelectedItem().toString();
+
+        try
+        {
+            if (name.equals(""))
+            {
+                JOptionPane.showMessageDialog(null, "Name is Required");
+            }
+            else
+            {
+                Conn c = new Conn();
+                String query = "insert into signup values('"+formno+"', '"+fname+"', '"+lname+"', '"+dob+"', '"+sex+"','"+email+"', '"+marital+"', '"+address+"', '"+city+"', '"+state+"', '"+pnumber+"','"+race+"')";
+                c.s.executeUpdate(query);
+
+                setVisible(false);
+                new SignUpTwo(formno).setVisible(true);
+            }
+        }
+        catch (Exception e)
+        {
+            System.out.println(e);
+        }
     }
 
     public static void main(String args[])

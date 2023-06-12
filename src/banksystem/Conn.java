@@ -10,13 +10,12 @@ public class Conn
     {
         try
         {
-            c = DriverManager.getConnection("jdbc:mysql:///bankmanagementsystem", "root", "123qwe");
+            c = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/bankmanagementsystem", "root", "123qwe");
             s = c.createStatement();
         }
         catch (Exception e)
         {
-            System.out.println(e);
+            e.printStackTrace();
         }
     }
-    
 }
