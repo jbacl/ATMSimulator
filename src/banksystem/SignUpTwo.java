@@ -8,7 +8,6 @@ import java.awt.event.*;
 
 public class SignUpTwo extends JFrame implements ActionListener
 {
-    long random;
     JLabel additionalDetails, religion, category, income, education, age, occupation, ssn, dl, sCitizen, eaccount, citizenship;
     JTextField religionTextField, occupationTextField, incomeTextField, educationTextField, categoryTextField, dlTextField, qualificationTextField, ssnTextField, eaccountTextField, citizenshipTextField;
     JRadioButton yes, no, yes2, no2, yes3, no3;
@@ -234,7 +233,7 @@ public class SignUpTwo extends JFrame implements ActionListener
         try
         {
             Conn c = new Conn();
-            String query = "insert into signuptwo values('"+formno+"', '"+religion+"', '"+occupation+"', '"+income+"', '"+education+"','"+citizenship+"', '"+ssn+"', '"+dl+"', '"+sCitizen+"', '"+age+"', '"+eaccount+"')";
+            String query = "UPDATE signup SET religion = '" + religion + "', occupation = '" + occupation + "', income = '" + income + "', education = '" + education + "', citizenship = '" + citizenship + "', ssn = '" + ssn + "', dl = '" + dl + "', sCitizen = '" + sCitizen + "', age = '" + age + "', eaccount = '" + eaccount + "' WHERE formno = '" + formno + "'";
             c.s.executeUpdate(query);
 
             setVisible(false);

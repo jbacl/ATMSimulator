@@ -211,7 +211,7 @@ public class SignUpOne extends JFrame implements ActionListener
     public void actionPerformed(ActionEvent ae)
     {
         String formno = "" + random;
-        String name = fnameTextField.getText();
+        String fname = fnameTextField.getText();
         String lname = lnameTextField.getText();
         String dob = ((JTextField) dateChooser.getDateEditor().getUiComponent()).getText();
         String sex = null;
@@ -246,18 +246,28 @@ public class SignUpOne extends JFrame implements ActionListener
         String address = addressTextField.getText();
         String city = cityTextField.getText();
         String state = dropdownMenu.getSelectedItem().toString();
+        String pnumber = pnumberTextField.getText();
         String race = raceBox.getSelectedItem().toString();
-
+        String religion = null;
+        String occupation = null;
+        String income = null;
+        String education = null;
+        String citizenship = null;
+        String ssn = null;
+        String dl = null;
+        String sCitizen = null;
+        String age = null;
+        String eaccount = null;
         try
         {
-            if (name.equals(""))
+            if (fname.equals(""))
             {
                 JOptionPane.showMessageDialog(null, "Name is Required");
             }
             else
             {
                 Conn c = new Conn();
-                String query = "insert into signup values('"+formno+"', '"+fname+"', '"+lname+"', '"+dob+"', '"+sex+"','"+email+"', '"+marital+"', '"+address+"', '"+city+"', '"+state+"', '"+pnumber+"','"+race+"')";
+                String query = "insert into signup values('"+formno+"', '"+fname+"', '"+lname+"', '"+dob+"', '"+sex+"','"+email+"', '"+marital+"', '"+address+"', '"+city+"', '"+state+"', '"+pnumber+"','"+race+"', '"+religion+"', '"+occupation+"', '"+income+"', '"+education+"', '"+citizenship+"','"+ssn+"', '"+dl+"', '"+sCitizen+"', '"+age+"', '"+eaccount+"')";
                 c.s.executeUpdate(query);
 
                 setVisible(false);
