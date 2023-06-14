@@ -22,16 +22,16 @@ public class SignUpTwo extends JFrame implements ActionListener
         this.formno = formno;
         setLayout(null);
 
-        // Info Details -> title
+// Info Details -> title
         setTitle("New Account Application Form - Page 2");
 
-        // Personal Details -> subtitle
+// Personal Details -> subtitle
         additionalDetails = new JLabel("Page 2: Additional Details");
         additionalDetails.setFont(new Font("Raleway", Font.BOLD, 22));
         additionalDetails.setBounds(330, 80, 600, 40);
         add(additionalDetails);
 
-        // Religion -> text and input
+// Religion -> text and input
         religion = new JLabel("Religion:");
         religion.setFont(new Font("Raleway", Font.BOLD, 20));
         religion.setBounds(100, 140, 100, 30);
@@ -44,7 +44,7 @@ public class SignUpTwo extends JFrame implements ActionListener
         add(religionBox);
         religionBox.setSelectedItem(null);
 
-        // Occupation -> text and input
+// Occupation -> text and input
         occupation = new JLabel("Occupation:");
         occupation.setFont(new Font("Raleway", Font.BOLD, 20));
         occupation.setBounds(100, 190, 200, 30);
@@ -55,7 +55,7 @@ public class SignUpTwo extends JFrame implements ActionListener
         occupationTextField.setBounds(300, 190, 400, 30);
         add(occupationTextField);
 
-        // Income -> text and input
+// Income -> text and input
         income = new JLabel("Yearly Income:");
         income.setFont(new Font("Raleway", Font.BOLD, 20));
         income.setBounds(100, 240, 200, 30);
@@ -68,7 +68,7 @@ public class SignUpTwo extends JFrame implements ActionListener
         add(incomeBox);
         incomeBox.setSelectedItem(null);
 
-        // Education -> text and buttons
+// Education -> text and buttons
         education = new JLabel("Education:");
         education.setFont(new Font("Raleway", Font.BOLD, 20));
         education.setBounds(100, 290, 200, 30);
@@ -81,7 +81,7 @@ public class SignUpTwo extends JFrame implements ActionListener
         add(educationsBox);
         educationsBox.setSelectedItem(null);
 
-        // Citizenship -> text and input
+// Citizenship -> text and input
         citizenship = new JLabel("Are you a citizen?");
         citizenship.setFont(new Font("Raleway", Font.BOLD, 20));
         citizenship.setBounds(100, 340, 200, 30);
@@ -101,7 +101,7 @@ public class SignUpTwo extends JFrame implements ActionListener
         citizengroup.add(yes2);
         citizengroup.add(no2);
 
-        // Address -> text and input
+// Address -> text and input
         ssn = new JLabel("Social Security:");
         ssn.setFont(new Font("Raleway", Font.BOLD, 20));
         ssn.setBounds(100, 390, 200, 30);
@@ -112,7 +112,7 @@ public class SignUpTwo extends JFrame implements ActionListener
         ssnTextField.setBounds(300, 390, 400, 30);
         add(ssnTextField);
 
-        // Drivers License Number -> text and input
+// Drivers License Number -> text and input
         dl = new JLabel("Drivers License:");
         dl.setFont(new Font("Raleway", Font.BOLD, 20));
         dl.setBounds(100, 440, 200, 30);
@@ -123,7 +123,7 @@ public class SignUpTwo extends JFrame implements ActionListener
         dlTextField.setBounds(300, 440, 400, 30);
         add(dlTextField);
 
-        // Senior Citizen -> text and input
+// Senior Citizen -> text and input
         sCitizen = new JLabel("Senior citizen:");
         sCitizen.setFont(new Font("Raleway", Font.BOLD, 20));
         sCitizen.setBounds(100, 490, 200, 30);
@@ -143,7 +143,7 @@ public class SignUpTwo extends JFrame implements ActionListener
         scitizengroup.add(yes);
         scitizengroup.add(no);
 
-        // Age -> text and input
+// Age -> text and input
         age = new JLabel("Age:");
         age.setFont(new Font("Raleway", Font.BOLD, 20));
         age.setBounds(100, 540, 200, 30);
@@ -156,7 +156,7 @@ public class SignUpTwo extends JFrame implements ActionListener
         add(ageBox);
         ageBox.setSelectedItem(null);
 
-        // Exisiting Account -> text and input
+// Exisiting Account -> text and input
         eaccount = new JLabel("Exisiting Account:");
         eaccount.setFont(new Font("Raleway", Font.BOLD, 20));
         eaccount.setBounds(100, 590, 200, 30);
@@ -176,7 +176,7 @@ public class SignUpTwo extends JFrame implements ActionListener
         eaccountgroup.add(yes3);
         eaccountgroup.add(no3);
         
-        // 'Next' at the bottom -> button
+// 'Next' at the bottom -> button
         next = new JButton("Next");
         next.setForeground(Color.BLACK);
         next.setBackground(Color.WHITE);
@@ -185,7 +185,7 @@ public class SignUpTwo extends JFrame implements ActionListener
         next.addActionListener(this);
         add(next);
         
-        // App color and layout
+// App color and layout
         getContentPane().setBackground(Color.WHITE);
         setSize(850,800);
         setLocation(350, 10);

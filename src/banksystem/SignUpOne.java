@@ -5,10 +5,10 @@ import java.awt.*;
 import java.util.*;
 import com.toedter.calendar.JDateChooser;
 import java.awt.event.*;
+import java.sql.ResultSet;
 
 public class SignUpOne extends JFrame implements ActionListener
 {
-    long random;
     JLabel formno, personalDetails, fname, lname, dob, email, sex, marital, address, city, state, pnumber, race;
     JTextField fnameTextField, lnameTextField, emailTextField, addressTextField, cityTextField, pnumberTextField, raceTextField;
     JRadioButton male, female, single, married, divorced, widow;
@@ -21,22 +21,19 @@ public class SignUpOne extends JFrame implements ActionListener
     {
         setLayout(null);
 
-        // Info Details -> title
-        Random ran = new Random();
-        random = Math.abs((ran.nextLong() % 9000L) + 1000L);
-
-        formno = new JLabel("Application form no. " + random);
+// Info Details -> title
+        formno = new JLabel("Official Application Form");
         formno.setFont(new Font("Raleway", Font.BOLD, 38));
         formno.setBounds(210, 20, 600, 40);
         add(formno);
 
-        // Personal Details -> subtitle
+// Personal Details -> subtitle
         personalDetails = new JLabel("Page 1: Personal Details");
         personalDetails.setFont(new Font("Raleway", Font.BOLD, 22));
         personalDetails.setBounds(330, 80, 600, 40);
         add(personalDetails);
 
-        // Name -> text and input
+// Name -> text and input
         fname = new JLabel("First Name:");
         fname.setFont(new Font("Raleway", Font.BOLD, 20));
         fname.setBounds(100, 140, 200, 30);
@@ -47,7 +44,7 @@ public class SignUpOne extends JFrame implements ActionListener
         fnameTextField.setBounds(300, 140, 400, 30);
         add(fnameTextField);
 
-        // Parental Guardian -> text and input
+// Parental Guardian -> text and input
         lname = new JLabel("Last Name:");
         lname.setFont(new Font("Raleway", Font.BOLD, 20));
         lname.setBounds(100, 190, 300, 30);
@@ -58,7 +55,7 @@ public class SignUpOne extends JFrame implements ActionListener
         lnameTextField.setBounds(300, 190, 400, 30);
         add(lnameTextField);
 
-        // Date of Birth -> text and input
+// Date of Birth -> text and input
         dob = new JLabel("Date of Birth:");
         dob.setFont(new Font("Raleway", Font.BOLD, 20));
         dob.setBounds(100, 240, 200, 30);
@@ -69,7 +66,7 @@ public class SignUpOne extends JFrame implements ActionListener
         dateChooser.setForeground(new Color(105, 105, 105, 105));
         add(dateChooser);
 
-        // Sex -> text and buttons
+// Sex -> text and buttons
         sex = new JLabel("Sex:");
         sex.setFont(new Font("Raleway", Font.BOLD, 20));
         sex.setBounds(100, 290, 200, 30);
@@ -89,7 +86,7 @@ public class SignUpOne extends JFrame implements ActionListener
         sexgroup.add(male);
         sexgroup.add(female);
 
-        // Email -> text and input
+// Email -> text and input
         email = new JLabel("Email Address:");
         email.setFont(new Font("Raleway", Font.BOLD, 20));
         email.setBounds(100, 340, 200, 30);
@@ -100,7 +97,7 @@ public class SignUpOne extends JFrame implements ActionListener
         emailTextField.setBounds(300, 340, 400, 30);
         add(emailTextField);
 
-        // Marital Status -> text and buttons
+// Marital Status -> text and buttons
         marital = new JLabel("Marital Status:");
         marital.setFont(new Font("Raleway", Font.BOLD, 20));
         marital.setBounds(100, 390, 200, 30);
@@ -132,7 +129,7 @@ public class SignUpOne extends JFrame implements ActionListener
         marriedgroup.add(divorced);
         marriedgroup.add(widow);
 
-        // Address -> text and input
+// Address -> text and input
         address = new JLabel("Address:");
         address.setFont(new Font("Raleway", Font.BOLD, 20));
         address.setBounds(100, 440, 200, 30);
@@ -143,7 +140,7 @@ public class SignUpOne extends JFrame implements ActionListener
         addressTextField.setBounds(300, 440, 400, 30);
         add(addressTextField);
 
-        // City -> text and input
+// City -> text and input
         city = new JLabel("City:");
         city.setFont(new Font("Raleway", Font.BOLD, 20));
         city.setBounds(330, 490, 200, 30);
@@ -154,7 +151,7 @@ public class SignUpOne extends JFrame implements ActionListener
         cityTextField.setBounds(385, 490, 90, 30);
         add(cityTextField);
 
-        // States -> text and input
+// States -> text and input
         state = new JLabel("State:");
         state.setFont(new Font("Raleway", Font.BOLD, 20));
         state.setBounds(500, 490, 200, 30);
@@ -180,7 +177,7 @@ public class SignUpOne extends JFrame implements ActionListener
         pnumberTextField.setBounds(300, 540, 400, 30);
         add(pnumberTextField);
 
-        // Races -> text and input
+// Races -> text and input
         race = new JLabel("Race:");
         race.setFont(new Font("Raleway", Font.BOLD, 20));
         race.setBounds(100, 590, 200, 30);
@@ -192,7 +189,7 @@ public class SignUpOne extends JFrame implements ActionListener
         add(raceBox);
         raceBox.setSelectedItem(null);
         
-        // 'Next' at the bottom -> button
+// 'Next' at the bottom -> button
         next = new JButton("Next");
         next.setForeground(Color.BLACK);
         next.setBackground(Color.WHITE);
@@ -201,7 +198,7 @@ public class SignUpOne extends JFrame implements ActionListener
         next.addActionListener(this);
         add(next);
         
-        // App color and layout
+// App color and layout
         getContentPane().setBackground(Color.WHITE);
         setSize(850,800);
         setLocation(350, 10);
@@ -210,7 +207,7 @@ public class SignUpOne extends JFrame implements ActionListener
 
     public void actionPerformed(ActionEvent ae)
     {
-        String formno = "" + random;
+        String formno = null;
         String fname = fnameTextField.getText();
         String lname = lnameTextField.getText();
         String dob = ((JTextField) dateChooser.getDateEditor().getUiComponent()).getText();
@@ -272,7 +269,19 @@ public class SignUpOne extends JFrame implements ActionListener
             }
             else
             {
+// Increase the max form number by one to avoid duplicates
                 Conn c = new Conn();
+                String getmaxFormnoQuery = "SELECT MAX(formno) FROM signup";
+                ResultSet rs = c.s.executeQuery(getmaxFormnoQuery);
+                int maxFormNo = 0;
+                if (rs.next()) 
+                {
+                    maxFormNo = rs.getInt(1);
+                }
+                int tempformno = maxFormNo + 1;
+
+                formno = "" + tempformno;
+
                 String query = "INSERT INTO signup VALUES('"+formno+"', '"+fname+"', '"+lname+"', '"+dob+"', '"+sex+"','"+email+"', '"+marital+"', '"+address+"', '"+city+"', '"+state+"', '"+pnumber+"','"+race+"', '"+religion+"', '"+occupation+"', '"+income+"', '"+education+"', '"+citizenship+"','"+ssn+"', '"+dl+"', '"+sCitizen+"', '"+age+"', '"+eaccount+"','"+accountType+"', '"+cardNumber+"', '"+pinNumber+"', '"+services+"', '"+agreement+"')";
                 c.s.executeUpdate(query);
 
