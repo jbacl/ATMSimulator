@@ -258,6 +258,12 @@ public class SignUpOne extends JFrame implements ActionListener
         String sCitizen = null;
         String age = null;
         String eaccount = null;
+        String accountType = null;
+        String cardNumber = null;
+        String pinNumber = null;
+        String services = null;
+        String agreement = null;
+
         try
         {
             if (fname.equals(""))
@@ -267,7 +273,7 @@ public class SignUpOne extends JFrame implements ActionListener
             else
             {
                 Conn c = new Conn();
-                String query = "insert into signup values('"+formno+"', '"+fname+"', '"+lname+"', '"+dob+"', '"+sex+"','"+email+"', '"+marital+"', '"+address+"', '"+city+"', '"+state+"', '"+pnumber+"','"+race+"', '"+religion+"', '"+occupation+"', '"+income+"', '"+education+"', '"+citizenship+"','"+ssn+"', '"+dl+"', '"+sCitizen+"', '"+age+"', '"+eaccount+"')";
+                String query = "INSERT INTO signup VALUES('"+formno+"', '"+fname+"', '"+lname+"', '"+dob+"', '"+sex+"','"+email+"', '"+marital+"', '"+address+"', '"+city+"', '"+state+"', '"+pnumber+"','"+race+"', '"+religion+"', '"+occupation+"', '"+income+"', '"+education+"', '"+citizenship+"','"+ssn+"', '"+dl+"', '"+sCitizen+"', '"+age+"', '"+eaccount+"','"+accountType+"', '"+cardNumber+"', '"+pinNumber+"', '"+services+"', '"+agreement+"')";
                 c.s.executeUpdate(query);
 
                 setVisible(false);
