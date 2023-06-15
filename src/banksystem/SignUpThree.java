@@ -3,6 +3,7 @@ package src.banksystem;
 import javax.swing.*;
 import java.awt.*;
 import java.util.*;
+import java.util.List;
 import java.awt.event.*;
 
 public class SignUpThree extends JFrame implements ActionListener
@@ -232,31 +233,37 @@ public class SignUpThree extends JFrame implements ActionListener
                              Math.abs(random.nextInt(10000)), 
                              Math.abs(random.nextInt(10000)));
             String pin = pinTextField.getText();
-            String services = "";
-            if (r1.isSelected())
+            List<String> services = new ArrayList<>();;
+            if (r1.isSelected()) 
             {
-                services = services + "ATM Card";
+                services.add("ATM Card");
             }
-            else if (r2.isSelected())
+
+            if (r2.isSelected()) 
             {
-                services = services + "Cheque Book";
+                services.add("Cheque Book");
             }
-            else if (r3.isSelected())
+
+            if (r3.isSelected()) 
             {
-                services = services + "Online Banking";
+                services.add("Online Banking");
             }
-            else if (r4.isSelected())
+
+            if (r4.isSelected()) 
             {
-                services = services + "Mobile Banking";
+                services.add("Mobile Banking");
             }
-            else if (r5.isSelected())
+
+            if (r5.isSelected()) 
             {
-                services = services + "Email Alerts";
+                services.add("Email Alerts");
             }
-            else if (r6.isSelected())
+
+            if (r6.isSelected()) 
             {
-                services = services + "SMS Alerts";
+                services.add("SMS Alerts");
             }
+            String servicesString = String.join(", ", services);
             String agreement = null;
             {
                 if (c7.isSelected() == true)
@@ -289,7 +296,7 @@ public class SignUpThree extends JFrame implements ActionListener
                     else
                     {
                         Conn conn = new Conn();
-                        String query1 = "UPDATE signup SET accountType = '" + accountType + "', cardNumber = '" + cnumber + "', pinNumber = '" + pin + "', services = '" + services + "', agreement = '" + agreement + "' WHERE formno = '" + formno + "'";
+                        String query1 = "UPDATE signup SET accountType = '" + accountType + "', cardNumber = '" + cnumber + "', pinNumber = '" + pin + "', services = '" + servicesString + "', agreement = '" + agreement + "' WHERE formno = '" + formno + "'";
                         String query2 = "INSERT INTO login values('"+formno+"', '"+cnumber+"', '"+pin+"')";
                         
                         conn.s.executeUpdate(query1);

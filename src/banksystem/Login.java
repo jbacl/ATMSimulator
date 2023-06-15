@@ -1,25 +1,20 @@
 package src.banksystem;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPasswordField;
-import javax.swing.JTextField;
 
+import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
 import java.awt.event.*;
+import java.sql.*;
 
 public class Login extends JFrame implements ActionListener{
 
-    // Initialize Variables
+// Initialize Variables
     JButton login, signup, clear;
     JTextField cardTextField;
     JPasswordField pinTextField;
 
     Login() 
     {
-        // Titles and headers -> text
+// Titles and headers -> text
         setTitle("ATM by Central Bank");
 
         setLayout(null);
@@ -36,49 +31,68 @@ public class Login extends JFrame implements ActionListener{
         text.setBounds(250, 40, 1000, 40);
         add(text);
 
+// Card No. -> text and input
         JLabel cardno = new JLabel("Card Number:");
         cardno.setFont(new Font("Raleway", Font.BOLD, 25));
-        cardno.setBounds(183, 162, 250, 40);
+        cardno.setBounds(193, 182, 250, 40);
         add(cardno);
 
+        JLabel subtitle = new JLabel("XXXX-XXXX-XXXX-XXXX format");
+        subtitle.setFont(new Font("Raleway", Font.ITALIC, 10));
+        subtitle.setBounds(430, 220, 800,14);
+        add(subtitle);
+
+        cardTextField = new JTextField();
+        cardTextField.setBounds(385, 190, 250, 30);
+        cardTextField.setFont(new Font("Arial", Font.BOLD, 14));
+        add(cardTextField);
+
+// Card Pin -> text and input  
         JLabel pin = new JLabel("Pin:");
         pin.setFont(new Font("Raleway", Font.BOLD, 25));
-        pin.setBounds(300, 212, 150, 40);
+        pin.setBounds(310, 247, 140, 40);
         add(pin);
+      
+        pinTextField = new JPasswordField();
+        pinTextField.setBounds(385, 255, 250, 30);
+        pinTextField.setFont(new Font("Arial", Font.BOLD, 14));
+        add(pinTextField);
 
+//  Login, clear, and signup -> buttons
         login = new JButton("Login");
-        login.setBounds(375, 310, 120, 30);
+        login.setBounds(385, 330, 120, 30);
         login.setBackground(Color.BLACK);
         login.setForeground(Color.WHITE);
         login.addActionListener(this);
         add(login);
 
         clear = new JButton("Clear");
-        clear.setBounds(505, 310, 120, 30);
+        clear.setBounds(515, 330, 120, 30);
         clear.setBackground(Color.BLACK);
         clear.setForeground(Color.WHITE);
         clear.addActionListener(this);
         add(clear);
 
         signup = new JButton("Sign up");
-        signup.setBounds(375, 360, 250, 30);
+        signup.setBounds(385, 380, 250, 30);
         signup.setBackground(Color.BLACK);
         signup.setForeground(Color.WHITE);
         signup.addActionListener(this);
         add(signup);
 
-        // Input Boxes -> input(str)
-        cardTextField = new JTextField();
-        cardTextField.setBounds(375, 170, 250, 30);
-        cardTextField.setFont(new Font("Arial", Font.BOLD, 14));
-        add(cardTextField);
+// Trial Card Number and Pin -> text
+        JLabel trial = new JLabel("Trial Card Number: 8266-1051-0257-8139");
+        trial.setFont(new Font("Raleway", Font.BOLD, 13));
+        trial.setBounds(18, 570, 750, 40);
+        add(trial);
 
-        pinTextField = new JPasswordField();
-        pinTextField.setBounds(375, 220, 250, 30);
-        pinTextField.setFont(new Font("Arial", Font.BOLD, 14));
-        add(pinTextField);
+        JLabel trial2 = new JLabel("Trial Pin: 1234");
+        trial2.setFont(new Font("Raleway", Font.BOLD, 13));
+        trial2.setBounds(18, 600, 750, 40);
+        add(trial2);
+        
 
-        // App size and color background
+// App size and color background
         getContentPane().setBackground(Color.WHITE);
         setSize(950, 680);
         setVisible(true);
@@ -94,7 +108,28 @@ public class Login extends JFrame implements ActionListener{
         }
         else if (ae.getSource() == login)
         {
-            
+            Conn c = new Conn();
+
+            String cnumber = cardTextField.getText();
+            String pinnumber = pinTextField.getText();
+            String query = "SELECT * FROM login WHERE cnumber = '"+cnumber+"' and pin = '"+pinnumber+"'";
+            try
+            {
+                ResultSet result = c.s.executeQuery(query);
+                if (result.next())
+                {
+                    setVisible(false);
+                    new Transactions(pinnumber).setVisible(true);
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null, "Error: Incorrect Card Number or Pin, try again");
+                }
+            }
+            catch (Exception e)
+            {
+                System.out.println(e);
+            }
         }
         else if (ae.getSource() == signup)
         {

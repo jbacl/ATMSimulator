@@ -269,7 +269,7 @@ public class SignUpOne extends JFrame implements ActionListener
             }
             else
             {
-// Increase the max form number by one to avoid duplicates
+// Figure out the max form number and increase the next form by one to avoid duplicates
                 Conn c = new Conn();
                 String getmaxFormnoQuery = "SELECT MAX(formno) FROM signup";
                 ResultSet rs = c.s.executeQuery(getmaxFormnoQuery);
