@@ -11,12 +11,13 @@ import java.util.*;
 
 public class Deposit extends JFrame implements ActionListener
 {
-    String pinnumber;
+    String pinnumber, formno;
     JButton deposit, back;
     JTextField amount;
 
-    Deposit(String pinnumber)
+    Deposit(String formno, String pinnumber)
     {
+        this.formno = formno;
         this.pinnumber = pinnumber;
         ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("src/imgs/atm.jpg"));
         Image i2 = i1.getImage().getScaledInstance(1024, 1024, Image.SCALE_DEFAULT);
@@ -51,41 +52,59 @@ public class Deposit extends JFrame implements ActionListener
         setVisible(true);
     }
 
-    public void actionPerformed(ActionEvent ae)
+    public void actionPerformed(ActionEvent ae) 
     {
-        if (ae.getSource() == deposit)
+        if (ae.getSource() == deposit) 
         {
             String number = amount.getText();
             LocalDateTime now = LocalDateTime.now();
-            if (number.equals(""))
+            if (number.equals("")) 
             {
                 JOptionPane.showMessageDialog(null, "Error: Enter a 'Deposit' amount");
-            }
-            else
+            } 
+            else 
             {
-                try
+                try 
                 {
+                // Retrieve the current runningBalance from the database
                     Conn c = new Conn();
-                    String query = "INSERT INTO bank values('"+pinnumber+"', '"+now+"', 'Deposit', '"+number+"')";
-                    c.s.executeUpdate(query);
-                    JOptionPane.showMessageDialog(null, number+" deposited succesfully");
+                    String getBalanceQuery = "SELECT runningBalance FROM bank WHERE formno = '" + formno + "'";
+                    ResultSet rs = c.s.executeQuery(getBalanceQuery);
+                
+                    int runningBalance = 0;
+                    if (rs.next()) 
+                    {
+                        runningBalance = rs.getInt("runningBalance");
+                    }
+                
+                // Calculate the new balance by adding the deposit amount
+                    int depositAmount = Integer.parseInt(number);
+                    int newBalance = runningBalance + depositAmount;
+                
+                // Update the runningBalance in the database
+                    String updateBalanceQuery = "UPDATE bank SET runningBalance = '" + newBalance + "' WHERE formno = '" + formno + "'";
+                    c.s.executeUpdate(updateBalanceQuery);
+                
+                // Insert the deposit transaction into the database
+                    String insertTransactionQuery = "INSERT INTO bank VALUES ('" + formno + "','" + pinnumber + "', '" + now + "', 'Deposit', '" + number + "', '" + newBalance + "')";
+                    c.s.executeUpdate(insertTransactionQuery);
+                
+                    JOptionPane.showMessageDialog(null, number + " deposited successfully");
                     setVisible(false);
-                    new Transactions(pinnumber).setVisible(true);
-                }
-                catch (Exception e)
+                    new Transactions(formno, pinnumber).setVisible(true);
+                
+                    rs.close();
+                } 
+                catch (Exception e) 
                 {
                     System.out.println(e);
                 }
             }
-        }
-        else if(ae.getSource() == back)
-        {
-            setVisible(false);
-            new Transactions(pinnumber).setVisible(true);
-        }
-    }
-    public static void main(String args[])
+        } 
+    else if (ae.getSource() == back) 
     {
-        new Deposit("");
+        setVisible(false);
+        new Transactions(formno, pinnumber).setVisible(true);
+    }
     }
 }

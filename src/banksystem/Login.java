@@ -11,10 +11,11 @@ public class Login extends JFrame implements ActionListener{
     JButton login, signup, clear;
     JTextField cardTextField;
     JPasswordField pinTextField;
+    String formno;
 
     Login() 
     {
-// Titles and headers -> text
+    // Titles and headers -> text
         setTitle("ATM by Central Bank");
 
         setLayout(null);
@@ -31,7 +32,7 @@ public class Login extends JFrame implements ActionListener{
         text.setBounds(250, 40, 1000, 40);
         add(text);
 
-// Card No. -> text and input
+    // Card No. -> text and input
         JLabel cardno = new JLabel("Card Number:");
         cardno.setFont(new Font("Raleway", Font.BOLD, 25));
         cardno.setBounds(193, 182, 250, 40);
@@ -47,7 +48,7 @@ public class Login extends JFrame implements ActionListener{
         cardTextField.setFont(new Font("Arial", Font.BOLD, 14));
         add(cardTextField);
 
-// Card Pin -> text and input  
+    // Card Pin -> text and input  
         JLabel pin = new JLabel("Pin:");
         pin.setFont(new Font("Raleway", Font.BOLD, 25));
         pin.setBounds(310, 247, 140, 40);
@@ -58,7 +59,7 @@ public class Login extends JFrame implements ActionListener{
         pinTextField.setFont(new Font("Arial", Font.BOLD, 14));
         add(pinTextField);
 
-//  Login, clear, and signup -> buttons
+    //  Login, clear, and signup -> buttons
         login = new JButton("Login");
         login.setBounds(385, 330, 120, 30);
         login.setBackground(Color.BLACK);
@@ -80,7 +81,7 @@ public class Login extends JFrame implements ActionListener{
         signup.addActionListener(this);
         add(signup);
 
-// Trial Card Number and Pin -> text
+    // Trial Card Number and Pin -> text
         JLabel trial = new JLabel("Trial Card Number: 8266-1051-0257-8139");
         trial.setFont(new Font("Raleway", Font.BOLD, 13));
         trial.setBounds(18, 570, 750, 40);
@@ -92,7 +93,7 @@ public class Login extends JFrame implements ActionListener{
         add(trial2);
         
 
-// App size and color background
+    // App size and color background
         getContentPane().setBackground(Color.WHITE);
         setSize(950, 680);
         setVisible(true);
@@ -101,43 +102,45 @@ public class Login extends JFrame implements ActionListener{
 
     public void actionPerformed(ActionEvent ae)
     {
-        if (ae.getSource() == clear)
+        if (ae.getSource() == clear) 
         {
             cardTextField.setText("");
             pinTextField.setText("");
-        }
-        else if (ae.getSource() == login)
+        } 
+        else if (ae.getSource() == login) 
         {
             Conn c = new Conn();
-
             String cnumber = cardTextField.getText();
             String pinnumber = pinTextField.getText();
-            String query = "SELECT * FROM login WHERE cnumber = '"+cnumber+"' and pin = '"+pinnumber+"'";
-            try
+            String query = "SELECT * FROM login WHERE cnumber = '" +cnumber+ "' and pin = '" +pinnumber+ "'";
+            try 
             {
                 ResultSet result = c.s.executeQuery(query);
-                if (result.next())
+                if (result.next()) 
                 {
+                // Retrieve the formno from the database
+                    String formno = result.getString("formno");
+
                     setVisible(false);
-                    new Transactions(pinnumber).setVisible(true);
-                }
-                else
+                    new Transactions(formno, pinnumber).setVisible(true);
+                } 
+                else 
                 {
                     JOptionPane.showMessageDialog(null, "Error: Incorrect Card Number or Pin, try again");
                 }
-            }
-            catch (Exception e)
+            } 
+            catch (Exception e) 
             {
                 System.out.println(e);
             }
-        }
-        else if (ae.getSource() == signup)
+        } 
+        else if (ae.getSource() == signup) 
         {
             setVisible(false);
             new SignUpOne().setVisible(true);
         }
-        
     }
+
 
     public static void main(String args[])
     {
