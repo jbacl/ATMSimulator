@@ -17,6 +17,7 @@ public class Withdrawal extends JFrame implements ActionListener
 
     Withdrawal(String formno, String pinnumber)
     {
+    // Background ATM Image
         this.formno = formno;
         this.pinnumber = pinnumber;
         ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("src/imgs/atm.jpg"));
@@ -25,15 +26,17 @@ public class Withdrawal extends JFrame implements ActionListener
         JLabel image = new JLabel(i3);
         image.setBounds(0, 0, 1024, 1024);
         add(image);
-
+        
+    // Withdrawal -> text
         JLabel text = new JLabel("Enter the amount you want to withdraw:");
         text.setBounds(170, 175, 700, 35);
         text.setForeground(Color.WHITE);
         text.setFont(new Font("System", Font.BOLD, 16));
         image.add(text);
-
+    
+    // Withdrawal -> input and button
         amount = new JTextField();
-        amount.setFont(new Font("Raleway", Font.BOLD, 22));
+        amount.setFont(new Font("Raleway", Font.BOLD, 16));
         amount.setBounds(170, 225, 320, 20);
         image.add(amount);
 

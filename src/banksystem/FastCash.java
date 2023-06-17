@@ -14,6 +14,7 @@ public class FastCash extends JFrame implements ActionListener
 
     FastCash(String formno, String pinnumber)
     {
+    // Background ATM Image
         this.formno = formno;
         this.pinnumber = pinnumber;
         ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("src/imgs/atm.jpg"));
@@ -104,11 +105,11 @@ public class FastCash extends JFrame implements ActionListener
                     {
                         int newBalance = runningBalance - withdrawalAmount;
                 
-                // Update the runningBalance in the database
+                    // Update the runningBalance in the database
                         String updateBalanceQuery = "UPDATE bank SET runningBalance = '" + newBalance + "' WHERE formno = '" + formno + "'";
                         c.s.executeUpdate(updateBalanceQuery);
                 
-                // Insert the deposit transaction into the database
+                    // Insert the deposit transaction into the database
                         String insertTransactionQuery = "INSERT INTO bank VALUES ('" + formno + "','" + pinnumber + "', '" + now + "', 'Withdrawal', '" + amount + "', '" + newBalance + "')";
                         c.s.executeUpdate(insertTransactionQuery);
                 

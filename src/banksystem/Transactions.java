@@ -11,6 +11,7 @@ public class Transactions extends JFrame implements ActionListener
 
     Transactions(String formno, String pinnumber)
     {
+    // Background ATM Image
         this.formno = formno;
         this.pinnumber = pinnumber;
         ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("src/imgs/atm.jpg"));
@@ -20,12 +21,14 @@ public class Transactions extends JFrame implements ActionListener
         image.setBounds(0, 0, 1024, 1024);
         add(image);
 
+    // Title -> text
         JLabel text = new JLabel("Please select a transaction");
         text.setBounds(235, 175, 700, 35);
         text.setForeground(Color.WHITE);
         text.setFont(new Font("System", Font.BOLD, 16));
         image.add(text);
 
+    // All Transaction Options -> buttons
         deposit = new JButton("Deposit");
         deposit.setBounds(150, 283, 150, 30);
         deposit.addActionListener(this);
@@ -86,6 +89,16 @@ public class Transactions extends JFrame implements ActionListener
         {
             setVisible(false);
             new FastCash(formno, pinnumber).setVisible(true);
+        }
+        else if (ae.getSource() == pinChange)
+        {
+            setVisible(false);
+            new PinChange(formno, pinnumber).setVisible(true);
+        }
+        else if (ae.getSource() == balanceEnquiry)
+        {
+            setVisible(false);
+            new BalanceEnquiry(formno, pinnumber).setVisible(true);
         }
     }
 

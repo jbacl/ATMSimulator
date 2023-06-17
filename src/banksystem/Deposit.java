@@ -17,6 +17,7 @@ public class Deposit extends JFrame implements ActionListener
 
     Deposit(String formno, String pinnumber)
     {
+    // Background ATM Image
         this.formno = formno;
         this.pinnumber = pinnumber;
         ImageIcon i1 = new ImageIcon(ClassLoader.getSystemResource("src/imgs/atm.jpg"));
@@ -33,7 +34,7 @@ public class Deposit extends JFrame implements ActionListener
         image.add(text);
 
         amount = new JTextField();
-        amount.setFont(new Font("Raleway", Font.BOLD, 22));
+        amount.setFont(new Font("Raleway", Font.BOLD, 16));
         amount.setBounds(170, 225, 320, 20);
         image.add(amount);
 
