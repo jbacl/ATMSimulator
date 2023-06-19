@@ -92,8 +92,8 @@ public class Withdrawal extends JFrame implements ActionListener
                         int newBalance = runningBalance - withdrawalAmount;
                 
                 // Update the runningBalance in the database
-                        String updateBalanceQuery = "UPDATE bank SET runningBalance = '" + newBalance + "' WHERE formno = '" + formno + "'";
-                        c.s.executeUpdate(updateBalanceQuery);
+                        // String updateBalanceQuery = "UPDATE bank SET runningBalance = '" + newBalance + "' WHERE formno = '" + formno + "'";
+                        // c.s.executeUpdate(updateBalanceQuery);
                 
                 // Insert the deposit transaction into the database
                         String insertTransactionQuery = "INSERT INTO bank VALUES ('" + formno + "','" + pinnumber + "', '" + now + "', 'Withdrawal', '" + number + "', '" + newBalance + "')";

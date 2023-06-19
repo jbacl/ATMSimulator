@@ -2,13 +2,15 @@ package src.banksystem;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 import java.sql.*;
 
-public class MiniStatement extends JFrame
+public class MiniStatement extends JFrame implements ActionListener
 {
     String formno, pinnumber;
+    JButton back;
 
-    MiniStatement(String formno, String pinnumber)
+    MiniStatement(String formno, String pinnumber) 
     {
         setTitle("Mini Statement");
         setLayout(null);
@@ -17,57 +19,101 @@ public class MiniStatement extends JFrame
         this.pinnumber = pinnumber;
 
         JLabel bank = new JLabel("Central Bank");
-        bank.setBounds(150, 20, 100, 20);
+        bank.setBounds(180, 20, 100, 20);
         add(bank);
 
         JLabel card = new JLabel();
         card.setBounds(20, 80, 300, 20);
         add(card);
 
-        JLabel mini = new JLabel();
-        mini.setBounds(20, -130, 400, 1000);
-        add(mini);
+        JLabel dateLabel = new JLabel("Date");
+        dateLabel.setBounds(20, 120, 300, 20);
+        add(dateLabel);
 
-        setSize(400, 600);
-        setLocation(20, 20);
+        JLabel typeLabel = new JLabel("Type");
+        typeLabel.setBounds(150, 120, 300, 20);
+        add(typeLabel);
+        
+        JLabel amountLabel = new JLabel("Amount");
+        amountLabel.setBounds(225, 120, 300, 20);
+        add(amountLabel);
+
+        JLabel balanceLabel = new JLabel("Balance");
+        balanceLabel.setBounds(330, 120, 300, 20);
+        add(balanceLabel);
+
+        JTextArea mini = new JTextArea();
+        mini.setEditable(false);
+
+    // Wrap the JTextArea in a JScrollPane
+        JScrollPane scrollPane = new JScrollPane(mini);
+        scrollPane.setBounds(20, 140, 395, 400); 
+        add(scrollPane);
+
+        back = new JButton("Back");
+        back.setBounds(264, 550, 150, 30);
+        back.addActionListener(this);
+        add(back);
+
+        setSize(450, 650);
+        setLocation(300, 0);
         getContentPane().setBackground(Color.WHITE);
         setVisible(true);
 
-        try
+        try 
         {
             Conn c = new Conn();
-            ResultSet rs = c.s.executeQuery("SELECT * FROM login WHERE formno = '"+formno+"'");
-            if (rs.next())
+            ResultSet rs = c.s.executeQuery("SELECT * FROM login WHERE formno = '" + formno + "'");
+            if (rs.next()) 
             {
                 card.setText("Card Number: XXXX-XXXX-XXXX-" + rs.getString("cnumber").substring(15));
-            }
-            else
+            } 
+            else 
             {
                 card.setText("No records available");
             }
-        }
-        catch (Exception e)
+        } 
+        catch (Exception e) 
         {
             System.out.print(e);
         }
 
-        try
+        try 
         {
             Conn c = new Conn();
-            ResultSet rs = c.s.executeQuery("SELECT * FROM bank WHERE formno = '"+formno+"'");
-            while (rs.next())
+            ResultSet rs = c.s.executeQuery("SELECT * FROM bank WHERE formno = '" + formno + "'");
+            while (rs.next()) 
             {
-                mini.setText(mini.getText() + "<html>" + rs.getString("date") + "&nbsp;&nbsp;&nbsp;&nbsp;" + rs.getString("type") + "&nbsp;&nbsp;&nbsp;&nbsp;" + rs.getString("amount") + "<br><br>");
+                String date = rs.getString("date").substring(0, 19);
+                String type = rs.getString("type");
+                String amount = rs.getString("amount");
+                Integer runningBalance = rs.getInt("runningBalance");
+
+            // Adjust the padding and alignment as needed
+                String formattedText = String.format("%-4s     %-15s   %-15s   %-15s\n", date, type, amount, runningBalance);
+
+                mini.append(formattedText);
             }
-        }
-        catch (Exception e)
+        } 
+        catch (Exception e) 
         {
             System.out.print(e);
         }
+
     }
 
-    public static void main(String args[])
+    public void actionPerformed(ActionEvent ae)
     {
-        new MiniStatement("","");
+        if (ae.getSource() == back)
+        {
+            setVisible(false);
+            new Transactions(formno, pinnumber).setVisible(true);
+        }
+    }
+
+    public static void main(String args[]) 
+    {
+        new MiniStatement("", "");
     }
 }
+
