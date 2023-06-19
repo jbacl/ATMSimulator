@@ -73,7 +73,8 @@ public class Transactions extends JFrame implements ActionListener
     {
         if (ae.getSource() == exit)
         {
-            System.exit(0);
+            setVisible(false);
+            new Login().setVisible(true);
         }
         else if (ae.getSource() == deposit)
         {
@@ -99,6 +100,11 @@ public class Transactions extends JFrame implements ActionListener
         {
             setVisible(false);
             new BalanceEnquiry(formno, pinnumber).setVisible(true);
+        }
+        else if (ae.getSource() == miniStatement)
+        {
+            setVisible(false);
+            new MiniStatement(formno, pinnumber).setVisible(true);
         }
     }
 
