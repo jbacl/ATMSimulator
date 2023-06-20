@@ -20,13 +20,13 @@ public class SignUpThree extends JFrame implements ActionListener
     {
         this.formno = formno;
         setLayout(null);
-// Account Details Title -> text
+    // Account Details Title -> text
         JLabel l1 = new JLabel("Page 3: Account Details");
         l1.setFont(new Font("Raleway", Font.BOLD, 22));
         l1.setBounds(300, 40, 400, 40);
         add(l1);
 
-// Account Type -> text and buttons
+    // Account Type -> text and buttons
         JLabel accountType = new JLabel("Account Type:");
         accountType.setFont(new Font("Raleway", Font.BOLD, 22));
         accountType.setBounds(100, 140, 200, 30);
@@ -76,7 +76,7 @@ public class SignUpThree extends JFrame implements ActionListener
         accountsgroup.add(r5);
         accountsgroup.add(r6);
 
-// Card Number -> text and input
+    // Card Number -> text and input
         JLabel cardNum = new JLabel("Card Number:");
         cardNum.setFont(new Font("Raleway", Font.BOLD, 22));
         cardNum.setBounds(100, 300, 200, 30);
@@ -97,7 +97,7 @@ public class SignUpThree extends JFrame implements ActionListener
         cnumberDetails2.setBounds(360, 320, 700, 20);
         add(cnumberDetails2);
 
-// Pin Number -> text, input, and subtext
+    // Pin Number -> text, input, and subtext
         JLabel pin = new JLabel("PIN:");
         pin.setFont(new Font("Raleway", Font.BOLD, 22));
         pin.setBounds(100, 370, 200, 30);
@@ -113,7 +113,7 @@ public class SignUpThree extends JFrame implements ActionListener
         pnumberDetails.setBounds(100, 400, 300, 20);
         add(pnumberDetails);
 
-// Services -> text and checkBox
+    // Services -> text and checkBox
         JLabel services = new JLabel("Services Requested:");
         services.setFont(new Font("Raleway", Font.BOLD, 18));
         services.setBounds(100, 450, 200, 30);
@@ -155,7 +155,7 @@ public class SignUpThree extends JFrame implements ActionListener
         c6.setBounds(600, 550, 200, 30);
         add(c6);
 
-// Agreement & Contract -> checkBox and text
+    // Agreement & Contract -> checkBox and text
         c7 = new JCheckBox("I hereby declare that the information provided is true and correct. I also understand");
         c7.setBackground(Color.WHITE);
         c7.setFont(new Font("Raleway", Font.BOLD, 16));
@@ -172,7 +172,7 @@ public class SignUpThree extends JFrame implements ActionListener
         agreement2.setBounds(120, 680, 700, 30);
         add(agreement2);
 
-// 'Submit' at the bottom -> button
+    // 'Submit' at the bottom -> button
         submit = new JButton("Submit");
         submit.setForeground(Color.BLACK);
         submit.setBackground(Color.WHITE);
@@ -181,7 +181,7 @@ public class SignUpThree extends JFrame implements ActionListener
         submit.addActionListener(this);
         add(submit);
 
-// 'Cancel' at the bottom -> button
+    // 'Cancel' at the bottom -> button
         cancel = new JButton("Cancel");
         cancel.setForeground(Color.BLACK);
         cancel.setBackground(Color.WHITE);
@@ -190,9 +190,10 @@ public class SignUpThree extends JFrame implements ActionListener
         cancel.addActionListener(this);
         add(cancel);
 
-// App color and layout
+    // App color and layout
         setSize(850, 820);
         setLocation(350, 0);
+        setResizable(false);
         getContentPane().setBackground(Color.WHITE);        
         setVisible(true);
     }
@@ -277,22 +278,22 @@ public class SignUpThree extends JFrame implements ActionListener
             }
             try
                 {   
-// Error Message -> Account Type is not selected
+                // Error Message -> Account Type is not selected
                     if (accountType == null || accountType.isEmpty())
                     {
                         JOptionPane.showMessageDialog(null, "Error: Please select an Account Type");
                     }
-// Error Message -> Agreement box is not checked                
+                // Error Message -> Agreement box is not checked                
                     if (c7.isSelected() != true)
                     {
                         JOptionPane.showMessageDialog(null, "Error: Please re-read the agreement and check the box");
                     }
-// Error Message -> Pin code is not 4 digits
+                // Error Message -> Pin code is not 4 digits
                     if (pin.length() != 4)
                     {               
                         JOptionPane.showMessageDialog(null, "Error: Pin number should be 4 numbers");
                     }
-// Connects to local database and updates/inserts values then returns to login page
+                // Connects to local database and updates/inserts values then returns to login page
                     else
                     {
                         Conn conn = new Conn();
@@ -314,7 +315,7 @@ public class SignUpThree extends JFrame implements ActionListener
             }
 
         }
-// Cancel Button -> delete data from database and back to login
+    // Cancel Button -> delete data from database and back to login
         else if (ae.getSource() == cancel)
         {
             try 
