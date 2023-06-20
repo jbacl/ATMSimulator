@@ -5,7 +5,6 @@ import java.awt.*;
 import java.awt.event.*;
 import java.sql.ResultSet;
 import java.time.LocalDateTime;
-import java.util.*;
 
 public class FastCash extends JFrame implements ActionListener
 {

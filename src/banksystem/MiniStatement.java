@@ -35,14 +35,15 @@ public class MiniStatement extends JFrame implements ActionListener
         add(typeLabel);
         
         JLabel amountLabel = new JLabel("Amount");
-        amountLabel.setBounds(225, 120, 300, 20);
+        amountLabel.setBounds(245, 120, 300, 20);
         add(amountLabel);
 
         JLabel balanceLabel = new JLabel("Balance");
-        balanceLabel.setBounds(330, 120, 300, 20);
+        balanceLabel.setBounds(321, 120, 300, 20);
         add(balanceLabel);
 
         JTextArea mini = new JTextArea();
+        mini.setTabSize(7);
         mini.setEditable(false);
 
     // Wrap the JTextArea in a JScrollPane
@@ -89,8 +90,8 @@ public class MiniStatement extends JFrame implements ActionListener
                 String amount = rs.getString("amount");
                 Integer runningBalance = rs.getInt("runningBalance");
 
-            // Adjust the padding and alignment as needed
-                String formattedText = String.format("%-4s     %-15s   %-15s   %-15s\n", date, type, amount, runningBalance);
+            // How the individual strings are formatted to align with the table
+                String formattedText = date + "      " + type + "\t" + amount + "\t" + runningBalance + "\n";
 
                 mini.append(formattedText);
             }

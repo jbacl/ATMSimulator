@@ -32,12 +32,12 @@ public class BalanceEnquiry extends JFrame implements ActionListener
         Conn c = new Conn();
         try 
         {
-            String getBalanceQuery = "SELECT runningBalance FROM bank WHERE formno = '" + formno + "'";
+            String getBalanceQuery = "SELECT currentBalance FROM bank WHERE formno = '" + formno + "'";
             ResultSet rs = c.s.executeQuery(getBalanceQuery);
 
             if (rs.next()) 
             {
-                int temp = rs.getInt("runningBalance");
+                int temp = rs.getInt("currentBalance");
                 currentBalance = String.valueOf(temp);
 
                 JLabel text = new JLabel("Current Account Balance:");

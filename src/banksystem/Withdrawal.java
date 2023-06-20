@@ -71,33 +71,33 @@ public class Withdrawal extends JFrame implements ActionListener
                 {
                 // Retrieve the current runningBalance from the database
                     Conn c = new Conn();
-                    String getBalanceQuery = "SELECT runningBalance FROM bank WHERE formno = '" + formno + "'";
+                    String getBalanceQuery = "SELECT currentBalance FROM bank WHERE formno = '" + formno + "'";
                     ResultSet rs = c.s.executeQuery(getBalanceQuery);
                 
-                    int runningBalance = 0;
+                    int currentBalance = 0;
                     if (rs.next()) 
                     {
-                        runningBalance = rs.getInt("runningBalance");
+                        currentBalance = rs.getInt("currentBalance");
                     }
                 
                 // Calculate the new balance by adding the deposit amount
                     int withdrawalAmount = Integer.parseInt(number);
 
-                    if (withdrawalAmount > runningBalance)
+                    if (withdrawalAmount > currentBalance)
                     {
                         JOptionPane.showMessageDialog(null, "Error: Insufficient Funds in Account");
                     }
                     else
                     {
-                        int newBalance = runningBalance - withdrawalAmount;
+                        int newBalance = currentBalance - withdrawalAmount;
                 
-                // Update the runningBalance in the database
-                        // String updateBalanceQuery = "UPDATE bank SET runningBalance = '" + newBalance + "' WHERE formno = '" + formno + "'";
-                        // c.s.executeUpdate(updateBalanceQuery);
-                
-                // Insert the deposit transaction into the database
-                        String insertTransactionQuery = "INSERT INTO bank VALUES ('" + formno + "','" + pinnumber + "', '" + now + "', 'Withdrawal', '" + number + "', '" + newBalance + "')";
+                    // Insert the deposit transaction into the database
+                        String insertTransactionQuery = "INSERT INTO bank VALUES ('" + formno + "','" + pinnumber + "', '" + now + "', 'Withdrawal', '" + number + "', '" + newBalance + "', '" + 0 + "')";
                         c.s.executeUpdate(insertTransactionQuery);
+
+                    // Update the runningBalance in the database
+                        String updateBalanceQuery = "UPDATE bank SET currentBalance = '" + newBalance + "' WHERE formno = '" + formno + "'";
+                        c.s.executeUpdate(updateBalanceQuery);
                 
                         JOptionPane.showMessageDialog(null, number + " withdrew successfully");
                         setVisible(false);
