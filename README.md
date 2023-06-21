@@ -7,4 +7,4 @@
 ### All information is stored and organized in a local _MySQL_ database and can be accessed at any time.
 
 ## How to Install and Run: 
-### 1. Download the zip file by clicking on the green **CODE button
+### 1. Download the zip file by clicking on the green **CODE** button
