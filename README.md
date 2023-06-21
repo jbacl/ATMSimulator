@@ -6,4 +6,4 @@
 ### For all of the options, you can use the back button to come back to the _transactions_ page if you misclicked or do not want that specific service.
 
 ## How to Install and Run: 
-* Download
+- Download
