@@ -1,4 +1,4 @@
-﻿# Automatic Teller Machine Simulator using _Java_ and _MySQL_
+﻿# Automatic Teller Machine Project
 
 ### A fully functional Java project that was designed and built to replicate the basic features of a standardized ATM.
 ### You can create your own bank account through the _Signup_ button and log into your account using the card number that's given to you at the end of the signup process.
@@ -6,4 +6,4 @@
 ### For all of the options, you can use the back button to come back to the _transactions_ page if you misclicked or do not want that specific service.
 
 ## How to Install and Run: 
-- Download
+### 1. Download
