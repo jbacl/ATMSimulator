@@ -2,6 +2,6 @@
 
 ### A fully functional Java project that was designed and built to replicate the basic features of a standardized ATM.
 ### You can create your own bank account through the _Signup_ button and log into your account using the card number that's given to you at the end of the signup process.
-### Once you login successfully, you will be given 6 options. Deposit, Withdrawal, Fast Cash, Mini Statement, Bank Inquiry, and Pinchange.
+### Once you login successfully, you will be given 6 options. Deposit, Withdrawal, Fast Cash, Mini Statement, Bank Inquiry, and Pinchange. Click on your desired option. You can use the back button to come back to the _transactions_ page if you misclicked.
 
 ## How to Install and Run: 
