@@ -6,7 +6,7 @@
 ### For all of the options, you can use the back button to come back to the _transactions_ page if you misclicked or do not want that specific service.
 ### All information is stored and organized in a local _MySQL_ database and can be accessed at any time.
 
-## How to Install and Run (windows): 
+## How to Install and Run (Windows): 
 ### 1. Download the zip file by clicking on the green **CODE** button and drag the downloaded file onto your desktop. 
 ### 2. Then, double-click on the zip file, and your computer will create a new folder with the source code.
 ### 2. Next,
