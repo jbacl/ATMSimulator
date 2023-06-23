@@ -1,12 +1,17 @@
 ﻿# Automatic Teller Machine using _Java_ and _MySQL_
 
-### A fully functional Java project that was designed and built to replicate the regular features of a standardized ATM.
-### You can create your own bank account through the _Signup_ button and log into your account using the card number that's given to you at the end of the signup process.
+### A fully functional Java project that was designed and built to replicate the standard features of an ATM.
+### You can create your own bank account through the _Signup_ button and a card number will be given to you at the end of the signup process.
 ### Once you log in successfully, you will be given 6 options: _Deposit_, _Withdrawal_, _Fast Cash_, _Mini Statement_, _Bank Inquiry_, and _Pinchange_. Click on your desired option and input any needed details. 
 ### For all of the options, you can use the back button to come back to the _transactions_ page if you misclicked or do not want that specific service.
 ### All information is stored and organized in a local _MySQL_ database and can be accessed at any time.
 
-## How to Install and Run (Windows): 
-### 1. Download the zip file by clicking on the green **CODE** button and drag the downloaded file onto your desktop. 
-### 2. Then, double-click on the zip file, and your computer will create a new folder with the source code.
-### 2. Next,
+## How to install and run: 
+### 1. Download the source code file by clicking on the green **CODE** button and dragging the downloaded file onto your desktop. 
+### 2. Double-click on the zip file, and your computer will create a new folder with the source code.
+### 3. Go to https://dev.mysql.com/downloads/installer/ and install the latest version of MySQL installer. 
+###     ***As of 06/23/2023, MySQL Workbench doesn't work on macOS. Please still try to install just incase they fix the issue***
+### 4. Open the MySQL installer and download the latest version of MySQL Server, MySQL Workbench, and MySQL Shell.
+### 5. After the files are done installing, open MySQL Workbench and click on the **PLUS** button next to MySQL Connections.
+### 6. Set _Connection Name_ to any name you want, and make sure _Connection Method_ is set to _Standard (TCP/IP)_
+### 7. For _Hostname_, input 
