@@ -13,8 +13,8 @@
 ## Only continue if you want to see the database
 ### 4. Go to https://dev.mysql.com/downloads/installer/ and install the latest version of MySQL installer. 
 ###     **_As of 06/23/2023, MySQL Workbench does not work on macOS. Still, try to install it just in case they fix the issue_**
-### 4. Open the MySQL installer and download the latest version of MySQL Server, MySQL Workbench, and MySQL Shell.
-### 5. After the files are done installing, open MySQL Workbench and click on the **PLUS** button next to MySQL Connections.
-### 6. Set _Connection Name_ to any name you want, and make sure _Connection Method_ is set to _Standard (TCP/IP)_
-### 7. For _Hostname_, input "bankmanagement-instance-1.c2fuumy8c57t.us-east-2.rds.amazonaws.com" and _Port_ as 3306.
-### 8. For the _Username_, input "admin" and _Password_ as "1234qwer".
+### 5. Open the MySQL installer and download the latest version of MySQL Server, MySQL Workbench, and MySQL Shell.
+### 6. After the files are done installing, open MySQL Workbench and click on the **PLUS** button next to MySQL Connections.
+### 7. Set _Connection Name_ to any name you want, and make sure _Connection Method_ is set to _Standard (TCP/IP)_
+### 8. For _Hostname_, input "bankmanagement-instance-1.c2fuumy8c57t.us-east-2.rds.amazonaws.com" and _Port_ as 3306.
+### 9. For the _Username_, input "admin" and _Password_ as "1234qwer".
