@@ -18,3 +18,4 @@
 ### 7. Set _Connection Name_ to any name you want, and make sure _Connection Method_ is set to _Standard (TCP/IP)_
 ### 8. For _Hostname_, input "bankmanagement-instance-1.c2fuumy8c57t.us-east-2.rds.amazonaws.com" and _Port_ as 3306.
 ### 9. For the _Username_, input "admin" and _Password_ as "1234qwer".
+### 10. At this point, you are connected to the AWS Database and can write SQL scripts to view the schemas and tables.
