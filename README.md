@@ -10,7 +10,7 @@
 ### 1. Download the source code file by clicking on the green **CODE** button and dragging the downloaded file onto your desktop. 
 ### 2. Double-click on the zip file, and your computer will create a new folder with the source code.
 ### 3. Go to https://dev.mysql.com/downloads/installer/ and install the latest version of MySQL installer. 
-###     ***P.S. As of 06/23/2023, MySQL Workbench doesn't work on macOS. Still, try to install it just in case they fix the issue***
+###     ***As of 06/23/2023, MySQL Workbench does not work on macOS. Still, try to install it just in case they fix the issue***
 ### 4. Open the MySQL installer and download the latest version of MySQL Server, MySQL Workbench, and MySQL Shell.
 ### 5. After the files are done installing, open MySQL Workbench and click on the **PLUS** button next to MySQL Connections.
 ### 6. Set _Connection Name_ to any name you want, and make sure _Connection Method_ is set to _Standard (TCP/IP)_
