@@ -10,7 +10,7 @@
 ### 1. Download the source code file by clicking on the green **CODE** button and dragging the downloaded file onto your desktop. 
 ### 2. Double-click on the zip file, and your computer will create a new folder with the source code.
 ### 3. Finally, double-click on _BankManagementSystem.jar_, and it will run the ATM Simulator.
-## Only continue if you want to see the database
+## **ONLY CONTINUE IF YOU WANT TO SEE THE DATABASE**
 ### 4. Go to https://dev.mysql.com/downloads/installer/ and install the latest version of MySQL installer. 
 ###     **_As of 06/23/2023, MySQL Workbench does not work on macOS. Still, try to install it just in case they fix the issue_**
 ### 5. Open the MySQL installer and download the latest version of MySQL Server, MySQL Workbench, and MySQL Shell.
