@@ -10,7 +10,7 @@ public class Conn
     {
         try
         {
-            c = DriverManager.getConnection("jdbc:mysql://bankmanagement-instance-1.c2fuumy8c57t.us-east-2.rds.amazonaws.com:3306/bankmanagementsystem", "admin", "1234qwer");
+            c = DriverManager.getConnection("jdbc:mysql://database-bankmanagement.c2fuumy8c57t.us-east-2.rds.amazonaws.com:3306/bankmanagementsystem", "admin", "1234qwer");
             s = c.createStatement();
         }
         catch (Exception e)
