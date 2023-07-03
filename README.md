@@ -16,6 +16,6 @@
 ### 5. Open the MySQL installer and download the latest version of MySQL Server, MySQL Workbench, and MySQL Shell.
 ### 6. After the files are done installing, open MySQL Workbench and click on the **PLUS** button next to _MySQL Connections_.
 ### 7. Set _Connection Name_ to any name you want, and make sure _Connection Method_ is set to _Standard (TCP/IP)_
-### 8. For _Hostname_, input "bankmanagement-instance-1.c2fuumy8c57t.us-east-2.rds.amazonaws.com" and _Port_ as 3306.
+### 8. For _Hostname_, input "database-bankmanagement.c2fuumy8c57t.us-east-2.rds.amazonaws.com" and _Port_ as 3306.
 ### 9. For the _Username_, input "admin" and _Password_ as "1234qwer".
 ### 10. Now, you are connected to the _AWS_ Database and can write SQL scripts to view the schemas and tables.
